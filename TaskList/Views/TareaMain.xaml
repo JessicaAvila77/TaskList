@@ -9,6 +9,7 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="10,0,10,0">
+            <Button Text="Agregar tarea" Command="{Binding goToAddTareaFormCommand}"/>
 
             <Grid Margin="5,5,5,5" RowDefinitions="Auto" ColumnDefinitions="*,*,*">
                 <Label Text="Nombre" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>

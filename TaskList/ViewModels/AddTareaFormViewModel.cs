@@ -24,6 +24,13 @@ namespace TaskList.ViewModels
         [ObservableProperty]
         private string prioridad;
 
+        // Opciones para los Pickers de Estado y Prioridad
+        [ObservableProperty]
+        private List<string> estadoOptions = new List<string> { "Por hacer", "En proceso", "Finalizada" };
+
+        [ObservableProperty]
+        private List<string> prioridadOptions = new List<string> { "1", "2", "3" };
+
         private readonly TareaService TareaService;
 
         //crear la vista en el archivo cs agregar constructores

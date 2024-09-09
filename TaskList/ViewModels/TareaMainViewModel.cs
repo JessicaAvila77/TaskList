@@ -18,6 +18,8 @@ namespace TaskList.ViewModels
         [ObservableProperty]
         private ObservableCollection<Tarea> tareaCollection = new ObservableCollection<Tarea>();
 
+        
+
         private readonly TareaService TareaService;
 
         public TareaMainViewModel()
