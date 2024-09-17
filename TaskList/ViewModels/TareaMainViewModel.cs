@@ -18,7 +18,9 @@ namespace TaskList.ViewModels
         [ObservableProperty]
         private ObservableCollection<Tarea> tareaCollection = new ObservableCollection<Tarea>();
 
-        
+        //Agregado
+        [ObservableProperty]
+        private ObservableCollection<Tarea> selectedTareas = new ObservableCollection<Tarea>();
 
         private readonly TareaService TareaService;
 
@@ -42,17 +44,34 @@ namespace TaskList.ViewModels
 
                 foreach (var tarea in getAll)
                 {
+                    //TareaCollection.Add(tarea);
+                    tarea.PropertyChanged += (s, e) =>
+                    {
+                        if (e.PropertyName == nameof(Tarea.IsSelected))
+                        {
+                            if (tarea.IsSelected && !SelectedTareas.Contains(tarea))
+                            {
+                                SelectedTareas.Add(tarea);
+                            }
+                            else if (!tarea.IsSelected && SelectedTareas.Contains(tarea))
+                            {
+                                SelectedTareas.Remove(tarea);
+                            }
+                        }
+                    };
+
+                    //
                     TareaCollection.Add(tarea);
+
                 }
 
+
             }
-
-
         }
 
         //en este punto como ese constructor no existe hay que crear la vista con el archivo xaml 
         //configurar constructores en css
-
+        
         [RelayCommand]
 
         private async Task goToAddTareaForm()
@@ -99,7 +118,21 @@ namespace TaskList.ViewModels
 
 
         }
-            
+
+        //Agregar
+
+        [RelayCommand]
+        private void DeleteSelectedTareas()
+        {
+            foreach (var tarea in SelectedTareas.ToList()) // Usar ToList para evitar modificar la colección mientras se itera  
+            {
+                TareaService.Delete(tarea);
+                TareaCollection.Remove(tarea);
+            }
+
+            SelectedTareas.Clear(); // Limpiar la lista de tareas seleccionadas  
+        }
+
 
 
     }

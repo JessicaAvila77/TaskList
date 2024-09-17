@@ -9,15 +9,17 @@
     <VerticalStackLayout Padding="30,0,30,0" Spacing="5" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
         <Label Text="Nombre de la tarea:"/>
         <Entry Text="{Binding Nombre}" Keyboard="Text" Placeholder="Ingrese la tarea"/>
-       
+
+        <Label Text="Descripción de la tarea (Opcional):"/>
+        <Entry Text="{Binding Descripcion}" Keyboard="Text" Placeholder="Ingrese descripción"/>
 
         <!-- Estado de la tarea -->
-        <Label Text="Estado de la tarea (seleccione):"/>
+        <Label Text="Seleccione estado:"/>
         <Picker ItemsSource="{Binding EstadoOptions}" 
                 SelectedItem="{Binding Estado}"/>
 
         <!-- Prioridad de la tarea -->
-        <Label Text="Prioridad (seleccione):"/>
+        <Label Text="Seleccione prioridad (Opcional):"/>
         <Picker ItemsSource="{Binding PrioridadOptions}" 
         SelectedItem="{Binding Prioridad}"/>
 

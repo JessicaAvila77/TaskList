@@ -29,8 +29,18 @@
                                                       
                             <VerticalStackLayout>
 
+                                <!-- checkbox -->
 
-                                <Label Text="{Binding Nombre}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold" />
+                                <HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+
+
+                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+
+
+                                    <Label Text="{Binding Nombre}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+
+                                <Label Text="{Binding Descripcion}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
                                 <Label Text="{Binding Estado}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding Estado, Converter={StaticResource EstadoToColorConverter}}" />
                                 <Label Text="{Binding Prioridad}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Micro"  />
 
@@ -48,6 +58,10 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <!-- Boton -->
+
+            <Button Text="Eliminar seleccionadas" Command="{Binding DeleteSelectedTareasCommand}" Padding="10,5,10,5" Margin="0,20,0,20"/>
 
         </VerticalStackLayout>
 

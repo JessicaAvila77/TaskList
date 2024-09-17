@@ -19,6 +19,9 @@ namespace TaskList.ViewModels
         private string nombre;
 
         [ObservableProperty]
+        private string descripcion;
+
+        [ObservableProperty]
         private string estado;
 
         [ObservableProperty]
@@ -45,6 +48,7 @@ namespace TaskList.ViewModels
             TareaService = new TareaService();
             Id = Tarea.Id;
             Nombre = Tarea.Nombre;
+            Descripcion = Tarea.Descripcion;
             Estado = Tarea.Estado;
             Prioridad = Tarea.Prioridad;
         }
@@ -63,7 +67,8 @@ namespace TaskList.ViewModels
                 Tarea Tarea = new Tarea(){
                     Id = Id,
                     Nombre= Nombre,
-                    Estado= Estado, 
+                    Descripcion = Descripcion,
+                    Estado = Estado, 
                     Prioridad= Prioridad
                 };
 
