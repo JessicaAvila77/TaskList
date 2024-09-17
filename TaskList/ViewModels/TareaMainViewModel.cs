@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TaskList.Models;
 using TaskList.Services;
 using TaskList.Views;
-using Windows.Devices.SmartCards;
+
 
 namespace TaskList.ViewModels
 {

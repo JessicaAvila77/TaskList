@@ -29,7 +29,7 @@ namespace TaskList.ViewModels
         private List<string> estadoOptions = new List<string> { "Por hacer", "En proceso", "Finalizada" };
 
         [ObservableProperty]
-        private List<string> prioridadOptions = new List<string> { "1", "2", "3" };
+        private List<string> prioridadOptions = new List<string> { "Alta", "Media", "Baja" };
 
         private readonly TareaService TareaService;
 

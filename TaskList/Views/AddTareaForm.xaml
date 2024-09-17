@@ -4,7 +4,7 @@
              x:Class="TaskList.Views.AddTareaForm"
              xmlns:viewModel="clr-namespace:TaskList.ViewModels"
              x:DataType="viewModel:AddTareaFormViewModel"
-             Title="Agregar Tarea">
+             Title="Tarea">
 
     <VerticalStackLayout Padding="30,0,30,0" Spacing="5" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
         <Label Text="Nombre de la tarea:"/>

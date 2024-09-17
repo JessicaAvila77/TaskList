@@ -5,30 +5,46 @@
              xmlns:viewModel ="clr-namespace:TaskList.ViewModels"
              x:DataType="viewModel:TareaMainViewModel"
              xmlns:model="clr-namespace:TaskList.Models"
+             xmlns:converters="clr-namespace:TaskList.Converters"           
              Title="LISTA TAREAS">
 
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EstadoToColorConverter x:Key="EstadoToColorConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+
     <ScrollView>
-        <VerticalStackLayout Padding="10,0,10,0">
-            <Button Text="Agregar tarea" Command="{Binding goToAddTareaFormCommand}"/>
+        <VerticalStackLayout Padding="10,5,10,5">
+            <Button Text="Agregar tarea" Command="{Binding goToAddTareaFormCommand}" Padding="10,5,10,5" Margin="0,0,0,20"/>
 
-            <Grid Margin="5,5,5,5" RowDefinitions="Auto" ColumnDefinitions="*,*,*">
-                <Label Text="Nombre" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                <Label Text="Estado" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
-                <Label Text="Prioridad" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="2"/>
-            </Grid>
-
+           
             <CollectionView ItemsSource="{Binding TareaCollection}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Tarea">
-                        <Grid RowSpacing="0" RowDefinitions="5,Auto,5,1" ColumnDefinitions="*,*,*" VerticalOptions="FillAndExpand">
-                            <Label Text="{Binding Nombre}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0"/>
-                            <Label Text="{Binding Estado}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-                            <Label Text="{Binding Prioridad}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+                        <Frame Margin="5,15,5,5" Padding="10" BorderColor="LightGray" CornerRadius="10" HasShadow="True">
 
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModel:TareaMainViewModel}}, Path=SelectTareaCommand}" CommandParameter="{Binding .}"/>
-                            </Grid.GestureRecognizers>
-                        </Grid>
+                                                      
+                            <VerticalStackLayout>
+
+
+                                <Label Text="{Binding Nombre}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Medium" FontAttributes="Bold" />
+                                <Label Text="{Binding Estado}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" TextColor="{Binding Estado, Converter={StaticResource EstadoToColorConverter}}" />
+                                <Label Text="{Binding Prioridad}" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Micro"  />
+
+
+
+                                    
+                                <VerticalStackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModel:TareaMainViewModel}}, Path=SelectTareaCommand}" CommandParameter="{Binding .}"/>
+                                </VerticalStackLayout.GestureRecognizers>
+                        
+
+                            </VerticalStackLayout>
+
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
